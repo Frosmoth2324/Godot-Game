@@ -1,0 +1,151 @@
+[gd_scene load_steps=18 format=3 uid="uid://curnir5p8fqcq"]
+
+[ext_resource type="Script" path="res://scripts/slime_purple.gd" id="1_fjtl1"]
+[ext_resource type="Texture2D" uid="uid://duf84q3adja4a" path="res://assets/sprites/slime_purple.png" id="2_s08mg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn4vr"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dadfv"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rttwx"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rgc3"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iymsj"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3njvc"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylkx4"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yviyu"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xho4u"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkjyq"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdqht"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6gr4"]
+atlas = ExtResource("2_s08mg")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_np7st"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn4vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dadfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rttwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rgc3")
+}],
+"loop": true,
+"name": &"die",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iymsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3njvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylkx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yviyu")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xho4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkjyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdqht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6gr4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fbic"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
+size = Vector2(12, 12)
+
+[node name="SlimePurple" type="CharacterBody2D"]
+script = ExtResource("1_fjtl1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_np7st")
+animation = &"hit"
+autoplay = "idle"
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-10, 0)
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -12)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_0fbic")
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_afj5g")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

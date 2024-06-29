@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7vnvoh7iookp"]
+
+[ext_resource type="Script" path="res://scripts/level1_sign_message.gd" id="1_ej3fu"]
+[ext_resource type="FontFile" uid="uid://cfia4km1icdhu" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_gc3qh"]
+
+[node name="Sign" type="CanvasLayer"]
+script = ExtResource("1_ej3fu")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(1150, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = -97.0
+offset_right = 1010.0
+offset_bottom = -65.0
+theme_override_fonts/font = ExtResource("1_gc3qh")
+theme_override_font_sizes/font_size = 24
+text = "This Way Is A Bit Harder"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_gc3qh")
+theme_override_font_sizes/font_size = 24
+text = "v"

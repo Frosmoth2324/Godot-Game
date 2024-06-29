@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci4r7n6o1kjpp"]
+
+[ext_resource type="Texture2D" uid="uid://dsuxxfwq8tjeu" path="res://assets/sprites/world_tileset.png" id="1_3coxo"]
+[ext_resource type="Script" path="res://scripts/level1_sign.gd" id="1_l2n4w"]
+[ext_resource type="Texture2D" uid="uid://bd3kwm8awfqbv" path="res://assets/sprites/enter_small.png" id="5_ma3ro"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdly1"]
+radius = 36.0
+
+[node name="Level1Sign" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_l2n4w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wdly1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3coxo")
+region_enabled = true
+region_rect = Rect2(128.674, 49.3235, 14.6204, 14.9995)
+
+[node name="EnterPrompt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(17, -21)
+texture = ExtResource("5_ma3ro")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

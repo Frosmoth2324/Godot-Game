@@ -1,0 +1,150 @@
+[gd_scene load_steps=18 format=3 uid="uid://dly1jj5w53g88"]
+
+[ext_resource type="Texture2D" uid="uid://bf5ba8v4kroui" path="res://assets/sprites/slime_green.png" id="1_6u3sf"]
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_f0dvu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iem5e"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vor6g"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u2b0"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3gxk"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qit3o"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0556"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebqdk"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gl33"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdhvj"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov47w"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mutp"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umckm"]
+atlas = ExtResource("1_6u3sf")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_np7st"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iem5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vor6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u2b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3gxk")
+}],
+"loop": true,
+"name": &"die",
+"speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qit3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0556")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebqdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gl33")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdhvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov47w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mutp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umckm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hks4o"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0wxm"]
+size = Vector2(12, 12)
+
+[node name="Slime" type="CharacterBody2D"]
+script = ExtResource("1_f0dvu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_np7st")
+animation = &"die"
+autoplay = "idle"
+
+[node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_hks4o")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-10, 0)
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_f0wxm")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="body_entered" from="AnimatedSprite2D/HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

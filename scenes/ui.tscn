@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8g4tux2vfn0x"]
+
+[ext_resource type="Texture2D" uid="uid://bb4cc8as4op60" path="res://assets/sprites/coin_singular.png" id="1_1xlhy"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_x210d"]
+[ext_resource type="FontFile" uid="uid://pntii14yjtwv" path="res://assets/fonts/PixelOperator8.ttf" id="2_6uct1"]
+[ext_resource type="Texture2D" uid="uid://d0pmvvbix3t4m" path="res://assets/sprites/heart.png" id="4_dgjg5"]
+[ext_resource type="Texture2D" uid="uid://bhgwhwc728qnh" path="res://assets/sprites/bg.png" id="5_iarpa"]
+[ext_resource type="Texture2D" uid="uid://cm0du6sq4p483" path="res://assets/sprites/progress.png" id="6_q0n2p"]
+[ext_resource type="Texture2D" uid="uid://xv42mawq0vh6" path="res://assets/sprites/wings.png" id="7_6xgek"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_x210d")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.015
+anchor_top = 0.015
+anchor_right = 0.1
+anchor_bottom = 0.1
+offset_right = 2.07999
+offset_bottom = 40.0
+
+[node name="Layout" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 70.0
+
+[node name="CoinCounter" type="HBoxContainer" parent="UI/Layout"]
+layout_mode = 2
+
+[node name="CoinSprite" type="TextureRect" parent="UI/Layout/CoinCounter"]
+layout_mode = 2
+texture = ExtResource("1_1xlhy")
+expand_mode = 2
+
+[node name="CoinLabel" type="Label" parent="UI/Layout/CoinCounter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6uct1")
+text = "0"
+
+[node name="HealthMarker" type="HBoxContainer" parent="UI/Layout"]
+layout_mode = 2
+
+[node name="HeartSprite" type="TextureRect" parent="UI/Layout/HealthMarker"]
+layout_mode = 2
+texture = ExtResource("4_dgjg5")
+expand_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI/Layout/HealthMarker"]
+custom_minimum_size = Vector2(50, 16)
+layout_mode = 2
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource("5_iarpa")
+texture_progress = ExtResource("6_q0n2p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Layout"]
+layout_mode = 2
+
+[node name="KeyItemLable" type="Label" parent="UI/Layout/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6uct1")
+text = "Key Items"
+
+[node name="KeyItems" type="HBoxContainer" parent="UI/Layout/VBoxContainer"]
+layout_mode = 2
+
+[node name="WingsSprite" type="TextureRect" parent="UI/Layout/VBoxContainer/KeyItems"]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_6xgek")
