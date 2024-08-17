@@ -4,10 +4,16 @@ var score = 0
 var coins = 0
 const MAX_HP = 50
 var health = MAX_HP
+var player_pos: Vector2
 var wings_got = false
+var sword_got = false
 var key_items = 0
 var tas = false
 var l1_s = false
+var current_level = "res://scenes/menu.tscn"
+
+var l1_coins = []
+var l2_coins = []
 
 func add_score():
 	score += 1
@@ -23,9 +29,8 @@ func _process(_delta):
 			Engine.time_scale = 0.3
 			tas = true
 	if Input.is_action_just_pressed("pause"):
-		Engine.time_scale = 1
-		GameManager.health = GameManager.MAX_HP
-		GameManager.score = 0
-		GameManager.coins = 0
-		tas = false
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		if get_tree().current_scene.name == "Menu":
+			SaveLoader.load_game("user://pausegame.json")
+		else:
+			SaveLoader.save_game("user://pausegame.json")
+			get_tree().change_scene_to_file("res://scenes/menu.tscn")

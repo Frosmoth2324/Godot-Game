@@ -10,7 +10,7 @@ var cayote_jump = false
 var cayote_window = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+@onready var camera = $Camera2D
 @onready var player = $"."
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var sword = $Sword
@@ -20,8 +20,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sword_timer = $SwordTimer
 @onready var sword_animation = $Sword/SwordAnimation
 @onready var cayote_timer = $CayoteTimer
-
 func _physics_process(delta):
+	player.position = GameManager.player_pos
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -71,13 +71,14 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	if GameManager.health > 0:
 		move_and_slide()
+	GameManager.player_pos = player.position
 
 func _process(_delta):
 	if is_on_floor():
 		air_jump = false
 		cayote_jump = false
 		
-	if Input.is_action_pressed("attack") and can_sword:
+	if Input.is_action_pressed("attack") and can_sword and GameManager.sword_got:
 		print("sword")
 		sword_animation.play("swing")
 		can_sword = false

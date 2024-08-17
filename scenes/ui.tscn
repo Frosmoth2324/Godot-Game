@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8g4tux2vfn0x"]
+[gd_scene load_steps=9 format=3 uid="uid://b8g4tux2vfn0x"]
 
 [ext_resource type="Texture2D" uid="uid://bb4cc8as4op60" path="res://assets/sprites/coin_singular.png" id="1_1xlhy"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_x210d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bhgwhwc728qnh" path="res://assets/sprites/bg.png" id="5_iarpa"]
 [ext_resource type="Texture2D" uid="uid://cm0du6sq4p483" path="res://assets/sprites/progress.png" id="6_q0n2p"]
 [ext_resource type="Texture2D" uid="uid://xv42mawq0vh6" path="res://assets/sprites/wings.png" id="7_6xgek"]
+[ext_resource type="Texture2D" uid="uid://c374gvdeapshu" path="res://assets/sprites/sword.png" id="8_famd2"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_x210d")
@@ -72,3 +73,8 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 texture = ExtResource("7_6xgek")
+
+[node name="SwordSprite" type="TextureRect" parent="UI/Layout/VBoxContainer/KeyItems"]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_famd2")
