@@ -107,6 +107,10 @@ func _on_die_timer_timeout():
 	GameManager.health = GameManager.MAX_HP
 	GameManager.score = 0
 	GameManager.coins = 0
+	if get_tree().current_scene.name == "Level 1":
+		GameManager.player_pos = Vector2(31,41)
+	elif get_tree().current_scene.name == "Level 2":
+		GameManager.player_pos = Vector2(25,-16)
 	get_tree().reload_current_scene()
 
 
