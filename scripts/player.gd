@@ -10,7 +10,6 @@ var cayote_jump = false
 var cayote_window = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var camera = $Camera2D
 @onready var player = $"."
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var sword = $Sword
