@@ -15,6 +15,13 @@ var current_level = "res://scenes/menu.tscn"
 var l1_coins = []
 var l2_coins = []
 
+var l1_fruit = []
+var l2_fruit = []
+
+# still working on
+var l1_enemy = []
+var l2_enemy = []
+
 func add_score():
 	score += 1
 func add_coin():

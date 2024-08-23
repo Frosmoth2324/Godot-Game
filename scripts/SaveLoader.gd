@@ -18,6 +18,10 @@ func save_game(place = "user://savegame.json"):
 	
 	save_data["l1_coins"] = GameManager.l1_coins
 	save_data["l2_coins"] = GameManager.l2_coins
+	save_data["l1_fruit"] = GameManager.l1_fruit
+	save_data["l2_fruit"] = GameManager.l2_fruit
+	save_data["l1_enemy"] = GameManager.l1_enemy
+	save_data["l2_enemy"] = GameManager.l2_enemy
 	
 	var json = JSON.stringify(save_data)
 	file.store_string(json)
@@ -40,5 +44,9 @@ func load_game(place = "user://savegame.json"):
 	GameManager.current_level = save_data["current_level"]
 	GameManager.l1_coins = save_data["l1_coins"]
 	GameManager.l2_coins = save_data["l2_coins"]
+	GameManager.l1_fruit = save_data["l1_fruit"]
+	GameManager.l2_fruit = save_data["l2_fruit"]
+	GameManager.l1_enemy = save_data["l1_enemy"]
+	GameManager.l2_enemy = save_data["l2_enemy"]
 	file.close()
 	get_tree().change_scene_to_file(GameManager.current_level)

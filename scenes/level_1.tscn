@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://26cbb5jg7bdo"]
+[gd_scene load_steps=29 format=3 uid="uid://26cbb5jg7bdo"]
 
 [ext_resource type="PackedScene" uid="uid://b811o8mei4oi6" path="res://scenes/player.tscn" id="1_gu1ka"]
 [ext_resource type="Texture2D" uid="uid://dsuxxfwq8tjeu" path="res://assets/sprites/world_tileset.png" id="2_rn3na"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/L1Coins.gd" id="9_4vi1h"]
 [ext_resource type="PackedScene" uid="uid://b3pljvq00gpb6" path="res://scenes/coin.tscn" id="9_oqlpr"]
 [ext_resource type="PackedScene" uid="uid://kpeqrp26xivx" path="res://scenes/fruit/yellow_grape.tscn" id="10_nujnf"]
+[ext_resource type="Script" path="res://scenes/L1Fruit.gd" id="11_0x8ge"]
 [ext_resource type="PackedScene" uid="uid://du74kucaqoxce" path="res://scenes/fruit/green_peach.tscn" id="11_rrhgd"]
 [ext_resource type="PackedScene" uid="uid://crl0y8sfc11bt" path="res://scenes/fruit/purple_pear.tscn" id="12_68o4l"]
 [ext_resource type="PackedScene" uid="uid://df6esqp80uka3" path="res://scenes/kill_zone.tscn" id="13_xtnoa"]
@@ -777,6 +778,7 @@ position = Vector2(460, -527)
 position = Vector2(443, -527)
 
 [node name="Fruit" type="Node" parent="."]
+script = ExtResource("11_0x8ge")
 
 [node name="YellowGrape" parent="Fruit" instance=ExtResource("10_nujnf")]
 position = Vector2(-89, -405)

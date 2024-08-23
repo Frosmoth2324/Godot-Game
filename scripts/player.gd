@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 130.0
 const JUMP_VELOCITY = -350.0
 var can_sword = true
@@ -8,7 +7,7 @@ var being_hit = false
 var air_jump = false
 var cayote_jump = false
 var cayote_window = false
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = $"."
 @onready var animated_sprite = $AnimatedSprite2D
