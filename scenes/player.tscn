@@ -357,6 +357,7 @@ wait_time = 0.2
 [node name="Sword" type="Node2D" parent="."]
 visible = false
 position = Vector2(0, -6)
+scale = Vector2(1.25, 1.25)
 
 [node name="SwordRotate" type="Node2D" parent="Sword"]
 position = Vector2(4, 0)
