@@ -51,4 +51,8 @@ func _on_hit_timer_timeout():
 
 
 func _on_die_timer_timeout():
+	if get_tree().current_scene.name == "Level 1":
+		GameManager.l1_enemy.append(get_name())
+	elif get_tree().current_scene.name == "Level 2":
+		GameManager.l2_enemy.append(get_name())
 	queue_free()

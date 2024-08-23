@@ -21,6 +21,7 @@ func _on_play_1_pressed():
 func _on_play_2_pressed():
 	GameManager.player_pos = Vector2(25,-16)
 	GameManager.wings_got = true
+	GameManager.sword_got = true
 	GameManager.key_items = 1
 	GameManager.current_level = "res://scenes/level_2.tscn"
 	get_tree().change_scene_to_file("res://scenes/level_2.tscn")

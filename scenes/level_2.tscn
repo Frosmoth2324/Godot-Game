@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm7j206s5u7s1"]
+[gd_scene load_steps=22 format=3 uid="uid://dm7j206s5u7s1"]
 
 [ext_resource type="Texture2D" uid="uid://dsuxxfwq8tjeu" path="res://assets/sprites/world_tileset.png" id="1_1vvsl"]
 [ext_resource type="Script" path="res://scripts/L2Coins.gd" id="1_3drm5"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://curnir5p8fqcq" path="res://scenes/slime_purple.tscn" id="5_qbvit"]
 [ext_resource type="PackedScene" uid="uid://dly1jj5w53g88" path="res://scenes/slime.tscn" id="6_mury1"]
 [ext_resource type="PackedScene" uid="uid://dgealcbf8buft" path="res://scenes/platform/platform_mud_small.tscn" id="7_3wu85"]
+[ext_resource type="Script" path="res://scenes/L2Slimes.gd" id="8_iwlmp"]
 [ext_resource type="PackedScene" uid="uid://b2kplqtedcf1c" path="res://scenes/platform/platform_mud_big.tscn" id="8_pwywx"]
 [ext_resource type="PackedScene" uid="uid://b3pljvq00gpb6" path="res://scenes/coin.tscn" id="9_u6fdo"]
 [ext_resource type="PackedScene" uid="uid://qwboua1t13d0" path="res://scenes/sword_chest.tscn" id="10_ttkax"]
@@ -478,6 +479,7 @@ position = Vector2(708, -850)
 [node name="UI" parent="." instance=ExtResource("3_km80p")]
 
 [node name="Slimes" type="Node" parent="."]
+script = ExtResource("8_iwlmp")
 
 [node name="SlimePurple" parent="Slimes" instance=ExtResource("5_qbvit")]
 position = Vector2(344, 0)

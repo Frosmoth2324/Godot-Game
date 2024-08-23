@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://26cbb5jg7bdo"]
+[gd_scene load_steps=30 format=3 uid="uid://26cbb5jg7bdo"]
 
 [ext_resource type="PackedScene" uid="uid://b811o8mei4oi6" path="res://scenes/player.tscn" id="1_gu1ka"]
 [ext_resource type="Texture2D" uid="uid://dsuxxfwq8tjeu" path="res://assets/sprites/world_tileset.png" id="2_rn3na"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cfia4km1icdhu" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_ffvbg"]
 [ext_resource type="Script" path="res://scripts/ScoreLabel.gd" id="5_sbgtp"]
 [ext_resource type="PackedScene" uid="uid://rbta1kevofxg" path="res://scenes/platform/platform_grass_big.tscn" id="6_jr04q"]
+[ext_resource type="Script" path="res://scenes/L1Slimes.gd" id="7_804k6"]
 [ext_resource type="PackedScene" uid="uid://dly1jj5w53g88" path="res://scenes/slime.tscn" id="7_dvay6"]
 [ext_resource type="PackedScene" uid="uid://curnir5p8fqcq" path="res://scenes/slime_purple.tscn" id="8_ddgev"]
 [ext_resource type="Script" path="res://scripts/L1Coins.gd" id="9_4vi1h"]
@@ -644,6 +645,7 @@ libraries = {
 autoplay = "Move"
 
 [node name="Slimes" type="Node" parent="."]
+script = ExtResource("7_804k6")
 
 [node name="Slime" parent="Slimes" instance=ExtResource("7_dvay6")]
 position = Vector2(93, -280)

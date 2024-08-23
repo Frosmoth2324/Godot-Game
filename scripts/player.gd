@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -350.0
+var sword_damage = 10
 var can_sword = true
 var being_hit = false
 var air_jump = false
@@ -123,7 +124,7 @@ func _on_sword_timer_timeout():
 
 func _on_hit_box_body_entered(body):
 	if body.has_method("hit"):
-		body.hit(10)
+		body.hit(sword_damage)
 
 
 func _on_cayote_timer_timeout():
