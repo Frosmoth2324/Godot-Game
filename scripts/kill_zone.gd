@@ -17,6 +17,10 @@ func _on_timer_timeout():
 	GameManager.coins = 0
 	GameManager.l1_coins = []
 	GameManager.l2_coins = []
+	GameManager.l1_enemy = []
+	GameManager.l2_enemy = []
+	GameManager.l1_fruit = []
+	GameManager.l2_fruit = []
 	if get_tree().current_scene.name == "Level 1":
 		GameManager.player_pos = Vector2(31,41)
 	elif get_tree().current_scene.name == "Level 2":
