@@ -8,6 +8,7 @@ var being_hit = false
 var air_jump = false
 var cayote_jump = false
 var cayote_window = false
+var sword_scale = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = $"."
@@ -46,10 +47,10 @@ func _physics_process(delta):
 	
 	if direction > 0:
 		animated_sprite.flip_h = false
-		sword.scale.x = 1
+		sword.scale.x = sword_scale
 	elif direction < 0:
 		animated_sprite.flip_h = true
-		sword.scale.x = -1
+		sword.scale.x = -sword_scale
 	if GameManager.health > 0:
 		if being_hit == false:
 			if is_on_floor():
