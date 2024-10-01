@@ -11,6 +11,7 @@ var sword_got = false
 var key_items = 0
 var tas = false
 var l1_s = false
+var on_level = "New Game"
 var current_level = "res://scenes/menu.tscn"
 
 var l1_coins = []
@@ -41,4 +42,5 @@ func _process(_delta):
 			SaveLoader.load_game("user://pausegame.json")
 		else:
 			SaveLoader.save_game("user://pausegame.json")
+			on_level = get_tree().current_scene.name
 			get_tree().change_scene_to_file("res://scenes/menu.tscn")

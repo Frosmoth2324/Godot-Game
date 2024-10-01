@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://but0grmoqdipt"]
+[gd_scene load_steps=4 format=3 uid="uid://but0grmoqdipt"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_jx772"]
 [ext_resource type="FontFile" uid="uid://cfia4km1icdhu" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_q2cc8"]
+[ext_resource type="PackedScene" uid="uid://b8g4tux2vfn0x" path="res://scenes/ui.tscn" id="3_illpy"]
 
 [node name="Menu" type="Control"]
 custom_minimum_size = Vector2(1150, 0)
@@ -107,6 +108,8 @@ offset_top = 240.0
 offset_right = 400.0
 offset_bottom = 271.0
 text = "No"
+
+[node name="UI" parent="." instance=ExtResource("3_illpy")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play1" to="." method="_on_play_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play2" to="." method="_on_play_2_pressed"]
