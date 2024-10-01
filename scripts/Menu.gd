@@ -14,11 +14,17 @@ func _on_quit_pressed():
 	get_tree().quit()
 
 func _on_play_1_pressed():
+	GameManager.perma_coins += GameManager.coins
+	GameManager.coins = 0
+	GameManager.l1_coins = []
 	GameManager.player_pos = Vector2(31,41)
 	GameManager.current_level = "res://scenes/level_1.tscn"
 	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 
 func _on_play_2_pressed():
+	GameManager.perma_coins += GameManager.coins
+	GameManager.coins = 0
+	GameManager.l2_coins = []
 	GameManager.player_pos = Vector2(25,-16)
 	GameManager.wings_got = true
 	GameManager.sword_got = true

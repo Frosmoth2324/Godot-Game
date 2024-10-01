@@ -15,6 +15,7 @@ func save_game(place = "user://savegame.json"):
 	save_data["key_items"] = GameManager.key_items
 	save_data["tas"] = GameManager.tas
 	save_data["current_level"] = GameManager.current_level
+	save_data["perma_coins"] = GameManager.perma_coins
 	
 	save_data["l1_coins"] = GameManager.l1_coins
 	save_data["l2_coins"] = GameManager.l2_coins
@@ -48,5 +49,6 @@ func load_game(place = "user://savegame.json"):
 	GameManager.l2_fruit = save_data["l2_fruit"]
 	GameManager.l1_enemy = save_data["l1_enemy"]
 	GameManager.l2_enemy = save_data["l2_enemy"]
+	GameManager.perma_coins = save_data["perma_coins"]
 	file.close()
 	get_tree().change_scene_to_file(GameManager.current_level)

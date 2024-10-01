@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var key_item_lable = $UI/Layout/VBoxContainer/KeyItemLable
 
 func _process(_delta):
-	coin_label.text = str(GameManager.coins)
+	coin_label.text = str(GameManager.coins + GameManager.perma_coins)
 	health_bar.value = GameManager.health
 	health_bar.max_value = GameManager.MAX_HP
 	wings_sprite.visible = GameManager.wings_got

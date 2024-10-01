@@ -2,6 +2,7 @@ extends Node
 
 var score = 0
 var coins = 0
+var perma_coins = 0
 const MAX_HP = 50
 var health = MAX_HP
 var player_pos: Vector2
