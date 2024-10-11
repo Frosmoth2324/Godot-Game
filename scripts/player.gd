@@ -4,11 +4,11 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -350.0
 var sword_damage = 10
 var can_sword = true
+var can_bow = true
 var being_hit = false
 var air_jump = false
 var cayote_jump = false
 var cayote_window = false
-var sword_scale = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = $"."
@@ -20,6 +20,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sword_timer = $SwordTimer
 @onready var sword_animation = $Sword/SwordAnimation
 @onready var cayote_timer = $CayoteTimer
+@onready var bow = $Bow
+@onready var bow_timer = $BowTimer
+@onready var bow_animation = $Bow/BowAnimation
+
 func _physics_process(delta):
 	player.position = GameManager.player_pos
 	# Add the gravity.
@@ -47,10 +51,12 @@ func _physics_process(delta):
 	
 	if direction > 0:
 		animated_sprite.flip_h = false
-		sword.scale.x = sword_scale
+		sword.scale.x = 1
+		bow.scale.x = 1
 	elif direction < 0:
 		animated_sprite.flip_h = true
-		sword.scale.x = -sword_scale
+		sword.scale.x = -1
+		bow.scale.x = -1
 	if GameManager.health > 0:
 		if being_hit == false:
 			if is_on_floor():
@@ -78,11 +84,17 @@ func _process(_delta):
 		air_jump = false
 		cayote_jump = false
 		
-	if Input.is_action_pressed("attack") and can_sword and GameManager.sword_got:
+	if Input.is_action_pressed("sword") and can_sword and GameManager.sword_got:
 		print("sword")
 		sword_animation.play("swing")
 		can_sword = false
 		sword_timer.start()
+		
+	if Input.is_action_pressed("bow") and can_bow and GameManager.bow_got:
+		print("bow")
+		bow_animation.play("bow")
+		can_bow = false
+		bow_timer.start()
 	
 func hit(damage):
 	if being_hit == false:
@@ -131,3 +143,7 @@ func _on_hit_box_body_entered(body):
 func _on_cayote_timer_timeout():
 	cayote_jump = true
 	cayote_window = false
+
+
+func _on_bow_timer_timeout():
+	can_bow = true

@@ -8,6 +8,7 @@ var health = MAX_HP
 var player_pos: Vector2
 var wings_got = false
 var sword_got = false
+var bow_got = true
 var key_items = 0
 var tas = false
 var l1_s = false

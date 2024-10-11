@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b811o8mei4oi6"]
+[gd_scene load_steps=43 format=3 uid="uid://b811o8mei4oi6"]
 
 [ext_resource type="Texture2D" uid="uid://dwcjlrfjekev5" path="res://assets/sprites/knight.png" id="1_6lm6i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e6136"]
@@ -328,6 +328,43 @@ _data = {
 "swing": SubResource("Animation_wojye")
 }
 
+[sub_resource type="Animation" id="Animation_xq01q"]
+resource_name = "bow"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_b28of"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vx3ky"]
+_data = {
+"RESET": SubResource("Animation_b28of"),
+"bow": SubResource("Animation_xq01q")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 2
@@ -351,6 +388,8 @@ wait_time = 0.3
 
 [node name="SwordTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="BowTimer" type="Timer" parent="."]
 
 [node name="CayoteTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -384,15 +423,22 @@ libraries = {
 
 [node name="Bow" type="Node2D" parent="."]
 visible = false
+position = Vector2(0, -6)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bow"]
-position = Vector2(8, -9)
+position = Vector2(8, -3)
 rotation = -0.785398
 texture = ExtResource("4_4sglt")
+
+[node name="BowAnimation" type="AnimationPlayer" parent="Bow"]
+libraries = {
+"": SubResource("AnimationLibrary_vx3ky")
+}
 
 [connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="SwordTimer" to="." method="_on_sword_timer_timeout"]
 [connection signal="timeout" from="SwordTimer" to="Sword" method="_on_sword_timer_timeout"]
+[connection signal="timeout" from="BowTimer" to="." method="_on_bow_timer_timeout"]
 [connection signal="timeout" from="CayoteTimer" to="." method="_on_cayote_timer_timeout"]
 [connection signal="body_entered" from="Sword/SwordRotate/SwordSprite/HitBox" to="." method="_on_hit_box_body_entered"]
