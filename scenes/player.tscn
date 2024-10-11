@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://b811o8mei4oi6"]
+[gd_scene load_steps=40 format=3 uid="uid://b811o8mei4oi6"]
 
 [ext_resource type="Texture2D" uid="uid://dwcjlrfjekev5" path="res://assets/sprites/knight.png" id="1_6lm6i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e6136"]
 [ext_resource type="Texture2D" uid="uid://c374gvdeapshu" path="res://assets/sprites/sword.png" id="3_r2qll"]
+[ext_resource type="Texture2D" uid="uid://budpo4ijv2fb7" path="res://assets/sprites/Bow.png" id="4_4sglt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xphgi"]
 atlas = ExtResource("1_6lm6i")
@@ -380,6 +381,14 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_2fe2b")
 }
+
+[node name="Bow" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bow"]
+position = Vector2(8, -9)
+rotation = -0.785398
+texture = ExtResource("4_4sglt")
 
 [connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
