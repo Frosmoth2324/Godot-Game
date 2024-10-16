@@ -21,7 +21,6 @@ var l2_coins = []
 var l1_fruit = []
 var l2_fruit = []
 
-# still working on
 var l1_enemy = []
 var l2_enemy = []
 

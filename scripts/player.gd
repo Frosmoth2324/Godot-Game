@@ -2,13 +2,16 @@ extends CharacterBody2D
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -350.0
-var sword_damage = 10
+var sword_damage = 20
 var can_sword = true
 var can_bow = true
 var being_hit = false
 var air_jump = false
 var cayote_jump = false
 var cayote_window = false
+var arrow_scene = preload("res://scenes/arrow.tscn")
+
+signal shoot_bow(pos)
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = $"."
@@ -23,6 +26,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var bow = $Bow
 @onready var bow_timer = $BowTimer
 @onready var bow_animation = $Bow/BowAnimation
+@onready var shoot_from_here_please = $ShootFromHerePlease
 
 func _physics_process(delta):
 	player.position = GameManager.player_pos
@@ -95,6 +99,7 @@ func _process(_delta):
 		bow_animation.play("bow")
 		can_bow = false
 		bow_timer.start()
+		shoot_bow.emit(shoot_from_here_please.global_position)
 	
 func hit(damage):
 	if being_hit == false:
@@ -103,6 +108,7 @@ func hit(damage):
 			being_hit = true
 			hit_timer.start()
 		if GameManager.health <= 0:
+			bow_animation.play("RESET")
 			sword_animation.play("RESET")
 			can_sword = false
 			die_timer.start()
@@ -120,6 +126,12 @@ func _on_die_timer_timeout():
 	GameManager.health = GameManager.MAX_HP
 	GameManager.score = 0
 	GameManager.coins = 0
+	GameManager.l1_coins = []
+	GameManager.l2_coins = []
+	GameManager.l1_enemy = []
+	GameManager.l2_enemy = []
+	GameManager.l1_fruit = []
+	GameManager.l2_fruit = []
 	if get_tree().current_scene.name == "Level 1":
 		GameManager.player_pos = Vector2(31,41)
 	elif get_tree().current_scene.name == "Level 2":
@@ -147,3 +159,18 @@ func _on_cayote_timer_timeout():
 
 func _on_bow_timer_timeout():
 	can_bow = true
+
+
+
+func _on_shoot_bow(pos):
+	var arrow = arrow_scene.instantiate() as Area2D
+	arrow.position = pos
+	if animated_sprite.flip_h == false:
+		arrow.direction = Vector2(1,0)
+	if animated_sprite.flip_h == true:
+		arrow.direction = Vector2(-1,0)
+	if animated_sprite.flip_h == true:
+		arrow.rotation_degrees = -90
+	if animated_sprite.flip_h == false:
+		arrow.rotation_degrees = 90
+	$Projectiles.add_child(arrow)

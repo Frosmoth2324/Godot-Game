@@ -328,6 +328,21 @@ _data = {
 "swing": SubResource("Animation_wojye")
 }
 
+[sub_resource type="Animation" id="Animation_b28of"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_xq01q"]
 resource_name = "bow"
 length = 0.5
@@ -342,21 +357,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_b28of"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vx3ky"]
@@ -435,6 +435,12 @@ libraries = {
 "": SubResource("AnimationLibrary_vx3ky")
 }
 
+[node name="ShootFromHerePlease" type="Marker2D" parent="."]
+position = Vector2(11, -9)
+
+[node name="Projectiles" type="Node" parent="."]
+
+[connection signal="shoot_bow" from="." to="." method="_on_shoot_bow"]
 [connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="SwordTimer" to="." method="_on_sword_timer_timeout"]
