@@ -44,3 +44,20 @@ func _process(_delta):
 			SaveLoader.save_game("user://pausegame.json")
 			on_level = get_tree().current_scene.name
 			get_tree().change_scene_to_file("res://scenes/menu.tscn")
+			
+func die():
+	Engine.time_scale = 1
+	health = MAX_HP
+	score = 0
+	coins = 0
+	l1_coins = []
+	l2_coins = []
+	l1_enemy = []
+	l2_enemy = []
+	l1_fruit = []
+	l2_fruit = []
+	if get_tree().current_scene.name == "Level 1":
+		player_pos = Vector2(31,41)
+	elif get_tree().current_scene.name == "Level 2":
+		player_pos = Vector2(25,-16)
+	get_tree().reload_current_scene()

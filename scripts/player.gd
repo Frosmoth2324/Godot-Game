@@ -122,22 +122,7 @@ func heal(points):
 
 
 func _on_die_timer_timeout():
-	Engine.time_scale = 1
-	GameManager.health = GameManager.MAX_HP
-	GameManager.score = 0
-	GameManager.coins = 0
-	GameManager.l1_coins = []
-	GameManager.l2_coins = []
-	GameManager.l1_enemy = []
-	GameManager.l2_enemy = []
-	GameManager.l1_fruit = []
-	GameManager.l2_fruit = []
-	if get_tree().current_scene.name == "Level 1":
-		GameManager.player_pos = Vector2(31,41)
-	elif get_tree().current_scene.name == "Level 2":
-		GameManager.player_pos = Vector2(25,-16)
-	get_tree().reload_current_scene()
-
+	GameManager.die()
 
 func _on_hit_timer_timeout():
 	being_hit = false
