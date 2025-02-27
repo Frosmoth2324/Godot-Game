@@ -13,6 +13,7 @@ func _process(_delta):
 	health_bar.max_value = GameManager.MAX_HP
 	wings_sprite.visible = GameManager.wings_got
 	sword_sprite.visible = GameManager.sword_got
+	#bow_sprite.visible = GameManager.bow_got
 	level_indicator.text = GameManager.on_level
 	if GameManager.key_items > 0:
 		key_item_lable.visible = true
