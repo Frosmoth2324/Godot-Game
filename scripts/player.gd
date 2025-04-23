@@ -159,3 +159,6 @@ func _on_shoot_bow(pos):
 	if animated_sprite.flip_h == false:
 		arrow.rotation_degrees = 90
 	$Projectiles.add_child(arrow)
+
+func is_player():
+	print("if this prints something has gone quite wrong")
